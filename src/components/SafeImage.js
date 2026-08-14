@@ -23,13 +23,7 @@ export default function SafeImage({ src, alt, fill, width, height, className, si
   // Guard: null/undefined/empty src causes next/image crash
   if (!src) {
     if (fill) {
-      return (
-        <div className={`relative ${className || ""}`} style={{ width: width || "100%", height: height || "100%" }}>
-          <div className={`absolute inset-0 bg-gray-100 flex items-center justify-center text-brand-300 ${""}`}>
-            <Icon name="sprout" size={30} strokeWidth={1.2} />
-          </div>
-        </div>
-      );
+      return <div className={`absolute inset-0 bg-gray-100 flex items-center justify-center text-brand-300 ${className || ""}`}><Icon name="sprout" size={30} strokeWidth={1.2} /></div>;
     }
     return (
       <div
@@ -44,40 +38,19 @@ export default function SafeImage({ src, alt, fill, width, height, className, si
   if (needsPlainImg(src)) {
     if (fill) {
       return (
-        <div className={`relative ${"overflow-hidden"}`} style={{ width: width || "100%", height: height || "100%" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={src}
-            alt={alt || ""}
-            className={`absolute inset-0 w-full h-full object-cover ${className || ""}`}
-            style={style}
-            {...rest}
-          />
-        </div>
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={alt || ""}
+          className={`absolute inset-0 w-full h-full object-cover ${className || ""}`}
+          style={style}
+          {...rest}
+        />
       );
     }
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img src={src} alt={alt || ""} width={width} height={height} className={className} style={style} {...rest} />
-    );
-  }
-
-  // Default: use next/image
-  if (fill) {
-    return (
-      <div className={`relative ${"overflow-hidden"}`} style={{ width: width || "100%", height: height || "100%" }}>
-        <Image
-          src={src}
-          alt={alt || ""}
-          fill
-          width={fill ? undefined : (width || 400)}
-          height={fill ? undefined : (height || 300)}
-          sizes={sizes}
-          className={`${className || ""} absolute inset-0 w-full h-full`}
-          style={style}
-          {...rest}
-        />
-      </div>
     );
   }
 

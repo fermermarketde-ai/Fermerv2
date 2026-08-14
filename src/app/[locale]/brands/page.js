@@ -48,7 +48,7 @@ export default function BrandsPage() {
             href={`/brands/${brand.slug}`}
             className="group bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-brand-200 transition-all duration-200 flex flex-col items-center text-center"
           >
-            <div className="relative w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center mb-3 group-hover:bg-brand-100 transition-colors overflow-hidden">
+            <div className="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center mb-3 group-hover:bg-brand-100 transition-colors overflow-hidden">
               {brand.logoUrl ? (
                 <SafeImage src={brand.logoUrl} alt={brand.name} fill className="object-contain p-1" />
               ) : (
